@@ -30,8 +30,6 @@ import{
   import { useAppContext } from '../Context/appContext'
   import { useNavigate } from 'react-router-dom'
   import axios from "axios";
-  import Web3 from "web3";
-  import Contract_ABI from "../utils/config_abi.json";
   
   function Document() {
   
@@ -41,7 +39,6 @@ import{
       const [total, setTotal] = useState("")
       const [lista, setLista] = useState([])
       const [valorTotal, setvalorTotal] = useState(0)
-      const [account, setAccount] = useState();
 
       const initialState = {
         name:'',
@@ -99,50 +96,6 @@ import{
         }
     
       }
-
-
-      useEffect(() => {
-        async function load() {
-            const web3 = new Web3(Web3.givenProvider || 'localhost:7545');
-            const accounts = await web3.eth.requestAccounts();
-
-            setAccount(accounts[0]);
-        }
-
-        load();
-        
-        
-
-    }, []);
-
-
-      let Contract_Address = '0x8FCC014fB765510788901bE99b1E51654Beea83C';
-      const Web3 = require('web3')
-      const web3 = new Web3('http://192.168.1.118:7545')
-      let enviaDocs = new web3.eth.Contract(Contract_ABI, Contract_Address);
-
-      
-
-      async function regUser() {
-        console.log('Teste 1')             
-        try {
-                enviaDocs.methods.grantPermission('0x51bf60a6d4A36d870157B296A2A84Eb94fC9034c').send({
-                from: account,
-                gas: '212000',
-                gasPrice: 100000000000 
-                //to: iddestnatario,
-            })
-            .then((result) => {
-                //sendItemLines();
-                console.log(result)
-                console.log("Executada");
-            }).catch(console.log);            
-        } catch (error) {
-            console.log(error)
-
-        }
-    }  
-
   
   
     return (
@@ -252,23 +205,6 @@ import{
                 
                 >
                  Registar na base de dados
-                </Button>
-                </HStack>
-                <HStack justify="center">
-                <Button
-                w={240}
-                p="6"
-                type="submit"
-                onClick={regUser}
-                bg="red.500"
-                color="white"
-                fontWeight="bold"
-                fontSize="l"
-                mt="2"
-                _hover={{bg:"red.800"}}
-                
-                >
-                 Registar na blockchain
                 </Button>
   
               </HStack>

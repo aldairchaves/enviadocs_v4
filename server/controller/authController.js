@@ -34,26 +34,5 @@ const login = async(req, res) => {
     res.status(201).json({user, token})
 }
 
-const getUserInfo = async (req, res) => {
-    
-    // const {idAddress} = req.body
-    
-    // const userID = await User.findOne({idAddress:idAddress})
-    // res.status(201).json({userID})
-    
-    // const list = await User.find()
-    // res.status(201).json({list})
 
-    // const info = await User.findOne({idAddress: req.body.idAddress})
-    // res.status(201).json({info})
-
-    
-    const {idAddress} = req.body
-    const user = await User.findOne({idAddress})
-    console.log(user)
-    res.status(201).json(user)
-    
-}
-
-
-export {register, login, getUserInfo}
+export {register, login}

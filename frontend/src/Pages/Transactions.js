@@ -18,7 +18,6 @@ import { useState} from "react";
 
 
 
-
 function Transactions() {
 
   
@@ -48,7 +47,6 @@ function Transactions() {
       bg="blackAlpha.200"
       h="calc(100vh - 150px"
       >
-        
         <Center
         w="100%"
         maxW={840}
