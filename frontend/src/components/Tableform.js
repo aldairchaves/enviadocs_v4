@@ -84,7 +84,7 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
                 <HStack sparcing="4" >
                 <Box w="15%">                    
                     <FormLabel htmlFor="descricao">Descricao de itens</FormLabel>
-                    <th>
+                    
                     <Input
                         type="text"
                         name="descricao"
@@ -93,7 +93,7 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                    </th>
+                   
                     </Box>                             
                  </HStack>
                
@@ -120,7 +120,7 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
 
                     <div className="flex flex-col">
                         <label htmlFor="preco">Preco</label>
-                        <th>
+                       
                         <input
                             type="number"
                             name="preco"
@@ -129,14 +129,14 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
                             value={preco}
                             onChange={(e) => setPreco(e.target.value)}
                         />
-                        </th>
+                        
                     </div>
 
                     <div className="flex flex-col">
                         <label htmlFor="total">Total</label>
-                        <th>
+                        
                         <p>{total}</p>
-                        </th>
+                       
                     </div>
                     
                
@@ -154,14 +154,17 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
             {/*Tabela de itens */}
             <table width="100% " className="mb-10">
 
-                <thead>
+                <tbody>
+                    <tr>
+                        <td className="font-bold">Itens</td>
+                        <td className="font-bold">Quantidade</td>
+                        <td className="font-bold">Preço</td>
+                        <td className="font-bold">Total</td>
+                        </tr>
+
+                        </tbody>
                     
-                        <th className="font-bold">Itens</th>
-                        <th className="font-bold">Quantidade</th>
-                        <th className="font-bold">Preço</th>
-                        <th className="font-bold">Total</th>
-                    
-                </thead>
+                
                 {lista.map(({ id, descricao, quantidade, preco, total }) => (
 
                     <React.Fragment key={id}>
