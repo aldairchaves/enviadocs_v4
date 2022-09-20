@@ -6,12 +6,14 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import DetailTrans from './components/DetailTrans'
 import { AppProvider } from './Context/appContext';
+import Dashboard from './Pages/Dashboard';
 
 export default function App() {
   return (
     <BrowserRouter>
     <AppProvider>
     <Routes>
+    <Route path="/" element= {<Dashboard />} />
       <Route path="/login" element= {<Login />} />
       <Route path="/register" element= {<Register />} />
       <Route path="/document" element= {<Document />} />

@@ -104,7 +104,6 @@ function Transactions() {
 
 
       </Flex>
-      <button onClick={getUserInfo}>Teste</button>
     </Box>
   );
 }

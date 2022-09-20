@@ -18,19 +18,19 @@ export default function Table({lista}) {
               
               <thead>
                     <tr className="bg-gray-100">
-                    <td className="font-bold">Número do Documento</td>
-                    <td className="font-bold">Data Transação</td>
-                    <td className="font-bold">Itens</td>
-                    <td className="font-bold">Data de Expiração</td>
+                    <td style={{fontWeight: 'bold'}}>Número do Documento</td>
+                    <td style={{fontWeight: 'bold'}}>Data Transação</td>
+                    <td style={{fontWeight: 'bold'}}>Itens</td>
+                    <td style={{fontWeight: 'bold'}}>Data de Expiração</td>
                     </tr>
                 </thead>
              {lista.map((trans, key) => (
                  
                 <React.Fragment key={key}>
                                
-                <tbody>
+                <tbody >
                     <tr>
-                        <td>{trans.docNumber}</td>
+                        <td >{trans.docNumber}</td>
                         <td>{trans.startDate}</td>
                         <td>{trans.transItems}</td>
                         <td>{trans.endDate}</td>                        

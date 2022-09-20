@@ -2,10 +2,10 @@ import React, { useEffect } from "react"
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid"
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
-import {Box, HStack, Input, FormLabel, FormControl} from "@chakra-ui/react"
+import { Box, HStack, Input, FormLabel, Button, Grid, GridItem, Flex } from "@chakra-ui/react"
 
 
-  
+
 export default function TableForm({ descricao, setDescricao, quantidade, setQuantidade, preco, setPreco, total, setTotal, lista, setLista, valorTotal, setvalorTotal }) {
     const [edicao, setEdicao] = useState(false)
 
@@ -76,95 +76,89 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
 
     return (
         <>
-            
-            <FormControl display="flex" flexDir="column" gap="4" onSubmit={handleSubmit}>
-           
-                
-                
-                <HStack sparcing="4" >
-                <Box w="15%">                    
-                    <FormLabel htmlFor="descricao">Descricao de itens</FormLabel>
-                    
-                    <Input
-                        type="text"
-                        name="descricao"
-                        id="descricao"
-                        placeholder="Descricao "
-                        value={descricao}
-                        onChange={(e) => setDescricao(e.target.value)}
-                    />
-                   
-                    </Box>                             
-                 </HStack>
-               
-                
+        <br />
+            <Flex fontSize="xl" justify = "center" style={{fontWeight: 'bold'}}>Adicionar Itens ao Documento</Flex>
+            <form onSubmit={handleSubmit}>
+                <Grid templateColumns='4' gap={4}>
+                    <GridItem bg='white'>
 
-                
-                   
-                    <HStack sparcing="4" >
-                <Box w="15%"> 
+                        <FormLabel htmlFor="descricao">Descricao</FormLabel>
+                        <Input
+                            type="text"
+                            name="descricao"
+                            id="descricao"
+                            placeholder="Descricao "
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)}
+                        />
+
+
+
                         <FormLabel htmlFor="quantidade">Quantidade</FormLabel>
-                       
                         <Input
                             type="number"
                             name="quantidade"
                             id="quantidade"
                             placeholder="Quantidade"
                             value={quantidade}
+                            w='30%'
                             onChange={(e) => setQuantidade(e.target.value)}
                         />
-                        
-                        </Box>                             
-                 </HStack>
-                   
 
-                    <div className="flex flex-col">
-                        <label htmlFor="preco">Preco</label>
-                       
-                        <input
+
+
+                        <FormLabel htmlFor="preco">Preco</FormLabel>
+                        <Input
                             type="number"
                             name="preco"
                             id="preco"
                             placeholder="Preco"
                             value={preco}
+                            w='30%'
                             onChange={(e) => setPreco(e.target.value)}
                         />
-                        
-                    </div>
 
-                    <div className="flex flex-col">
-                        <label htmlFor="total">Total</label>
-                        
+
+
+                    </GridItem>
+
+
+
+                </Grid>
+
+                <p />
+                <br/>
+
+                <HStack sparcing="6">
+                    <Box w="25%">
+                        <FormLabel htmlFor="total">Total</FormLabel>
                         <p>{total}</p>
-                       
-                    </div>
-                    
-               
-                
-                
-                <button
+                    </Box>
+                </HStack>
+                <br/>
+
+                <HStack justify="center">
+                <Button
                     type="submit"
                     className="mb-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow boerder-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all durantion-300"
                 >
                     {edicao ? "Editando Linha" : "Adicionar Item"}
-                </button>
-            </FormControl>
-           
+                </Button>
+                </HStack>
+            </form>
+            <br/>
 
             {/*Tabela de itens */}
             <table width="100% " className="mb-10">
 
-                <tbody>
-                    <tr>
+                <thead>
+                    <tr className="bg-gray-100">
                         <td className="font-bold">Itens</td>
                         <td className="font-bold">Quantidade</td>
                         <td className="font-bold">Preço</td>
                         <td className="font-bold">Total</td>
-                        </tr>
-
-                        </tbody>
-                    
-                
+                    </tr>
+                </thead>
                 {lista.map(({ id, descricao, quantidade, preco, total }) => (
 
                     <React.Fragment key={id}>
@@ -193,4 +187,5 @@ export default function TableForm({ descricao, setDescricao, quantidade, setQuan
 
         </>
     )
+
 }

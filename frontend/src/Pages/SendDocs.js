@@ -177,51 +177,51 @@ import{
   
             <HStack sparcing="4" justify="right">
               <Box w="25%">
-                <FormLabel htmlFor="docNumber">Nº do documento</FormLabel>
+                <FormLabel htmlFor="docNumber" style={{fontWeight: 'bold'}}>Nº do documento</FormLabel>
                 <Input id="docNumber" type="number" disabled/>              
               </Box>                             
               </HStack>
 
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="nome">Remetente</FormLabel>
+                <FormLabel htmlFor="nome" style={{fontWeight: 'bold'}}>Remetente</FormLabel>
                 <Input id="sender" value={"useData.name"} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="senderID">Endereço de Identificação</FormLabel>
+                <FormLabel htmlFor="senderID" style={{fontWeight: 'bold'}}>Endereço de Identificação</FormLabel>
                 <Input id="senderID" value={account} disabled/>              
               </Box>                    
               </HStack>
               
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="senderMail">E-mail</FormLabel>
+                <FormLabel htmlFor="senderMail" style={{fontWeight: 'bold'}}>E-mail</FormLabel>
                 <Input id="senderMail" type="email" value={"useData.email"} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="date">Data de envio</FormLabel>
+                <FormLabel htmlFor="date" style={{fontWeight: 'bold'}}>Data de envio</FormLabel>
                 <Input id="date" type="text" value={ndate} disabled />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>    
               </HStack>
@@ -229,13 +229,14 @@ import{
               <HStack sparcing="4">
               
               <Box w="50%">
-                <FormLabel htmlFor="expDate">Data de expiração</FormLabel>
+                <FormLabel htmlFor="expDate" style={{fontWeight: 'bold'}}>Data de expiração</FormLabel>
                 <Input id="expDate" type="date" />              
               </Box>             
               </HStack>
   
               <TableContainer>
                 <TableForm
+                
                     descricao={descricao}
                     setDescricao={setDescricao}
                     quantidade={quantidade}
