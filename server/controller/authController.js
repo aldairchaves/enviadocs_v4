@@ -1,3 +1,4 @@
+import Doctran from '../models/Doctran.js'
 import User from '../models/User.js'
 
 const register = async(req, res) => {
@@ -34,5 +35,48 @@ const login = async(req, res) => {
     res.status(201).json({user, token})
 }
 
+const getUserInfo = async (req, res) => {
+    
+    // const {idAddress} = req.body
+    
+    // const userID = await User.findOne({idAddress:idAddress})
+    // res.status(201).json({userID})
+    
+    // const list = await User.find()
+    // res.status(201).json({list})
 
-export {register, login}
+    // const info = await User.findOne({idAddress: req.body.idAddress})
+    // res.status(201).json({info})
+
+    
+    const {idAddress} = req.body
+    const user = await User.findOne({idAddress})
+    console.log(user)
+    res.status(201).json(user)
+    
+}
+
+const setTransaction = async (req, res) => {
+try {
+    const {docNumber, transID, startDate, transItems, endDate} = req.body
+    const trans = await Doctran.create({docNumber, transID, startDate, transItems, endDate})
+    console.log(trans)
+    res.status(201).json({trans:{DocNumber:trans.docNumber, TransID:trans.transID, Date: trans.startDate, Items: trans.transItems, EndDate: trans.endDate}})
+
+ }catch(error) {
+     res.status(500).json({msg: 'Ocorreu um erro'})
+ }
+}
+
+const fetchTransaction = async (req,res) => {
+    try {
+        const {transID} = req.body
+        const docs = await Doctran.find({transID})
+        
+        res.status(201).json({docs})
+    } catch (error) {
+        
+    }
+}
+
+export {register, login, getUserInfo, setTransaction, fetchTransaction }
