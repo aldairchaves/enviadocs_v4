@@ -1,0 +1,34 @@
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.brand {
+    margin-left: 1rem;
+    color:black;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.item {
+    display: flex;
+    
+}
+.ul {
+    display: flex;
+    margin: 25px;
+}
+
+.ul > li{
+    margin: 0 1rem;
+    color: black;
+    font-weight: bolder;
+    list-style-type: none;
+}
+
+.ul > a{
+    text-decoration: none;
+}
