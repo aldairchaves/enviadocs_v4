@@ -17,8 +17,3 @@ root.render(
     </AppProvider>
   </React.StrictMode>
 );
-<<<<<<<< HEAD:frontend/src/index.js
-========
-
-
->>>>>>>> 74404bb5424e9bb590e2be44e8301627425fb45a:old/src/index.js

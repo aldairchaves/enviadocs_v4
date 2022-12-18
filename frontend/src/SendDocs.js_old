@@ -34,34 +34,34 @@ import{
       const [valorTotal, setvalorTotal] = useState(0)
       const [sender, setSender] = useState("")
       const [useData, setUseData] = useState(false)
-      
 
      
-
-      const [account, setAccount] = useState(); // state variable to set account.
+      const [account, setAccount] = useState(""); // state variable to set account.
 
      const { getAccount} = useAppContext()
 
       useEffect(() => {
-          async function load() {
+          const myaccount = async () => {
               //const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
               const web3 = new Web3(Web3.givenProvider || 'http://192.168.1.118:7545');
               const accounts = await web3.eth.requestAccounts();
-              
-              setAccount(accounts[0]);
+              setAccount(prevAccount => ([...prevAccount, ...accounts[0]]));
+              return accounts[0];
           }
 
           
-          load();
+          //load();
          
           
-          userDetail ()
+          userDetail (myaccount)
          
   
       }, []);
   
       const  userDetail = async () => {
-        const useInfo =  await axios.post('http://localhost:5003/api/getuserinfo', {'idAddress': account})
+        //console.log(myaccount);
+        console.log("teste: ",account);
+        const useInfo =  await axios.post('http://localhost:5003/api/getuserinfo', {'idAddress': "myaccount"})
             .then((result)=>
             // console.log(result)
             setUseData(result.data)
@@ -177,51 +177,51 @@ import{
   
             <HStack sparcing="4" justify="right">
               <Box w="25%">
-                <FormLabel htmlFor="docNumber" style={{fontWeight: 'bold'}}>Nº do documento</FormLabel>
+                <FormLabel htmlFor="docNumber">Nº do documento</FormLabel>
                 <Input id="docNumber" type="number" disabled/>              
               </Box>                             
               </HStack>
 
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="nome" style={{fontWeight: 'bold'}}>Remetente</FormLabel>
+                <FormLabel htmlFor="nome">Remetente</FormLabel>
                 <Input id="sender" value={"useData.name"} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="senderID" style={{fontWeight: 'bold'}}>Endereço de Identificação</FormLabel>
+                <FormLabel htmlFor="senderID">Endereço de Identificação</FormLabel>
                 <Input id="senderID" value={account} disabled/>              
               </Box>                    
               </HStack>
               
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="senderMail" style={{fontWeight: 'bold'}}>E-mail</FormLabel>
+                <FormLabel htmlFor="senderMail">E-mail</FormLabel>
                 <Input id="senderMail" type="email" value={"useData.email"} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="date" style={{fontWeight: 'bold'}}>Data de envio</FormLabel>
+                <FormLabel htmlFor="date">Data de envio</FormLabel>
                 <Input id="date" type="text" value={ndate} disabled />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>    
               </HStack>
@@ -229,14 +229,13 @@ import{
               <HStack sparcing="4">
               
               <Box w="50%">
-                <FormLabel htmlFor="expDate" style={{fontWeight: 'bold'}}>Data de expiração</FormLabel>
+                <FormLabel htmlFor="expDate">Data de expiração</FormLabel>
                 <Input id="expDate" type="date" />              
               </Box>             
               </HStack>
   
               <TableContainer>
                 <TableForm
-                
                     descricao={descricao}
                     setDescricao={setDescricao}
                     quantidade={quantidade}

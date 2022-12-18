@@ -13,19 +13,19 @@ import{
     AccordionIcon,
   } from "@chakra-ui/react"
   import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
-  import TableForm from "../components/Tableform"
+  import TableForm from "./Tableform"
   import { useState, useEffect, useContext} from "react";
   import Web3 from "web3";
   import { useAppContext } from "../Context/appContext";
   import axios from "axios";
   import Contract_ABI from "../utils/config_abi.json";
+  import { useParams } from 'react-router-dom';
+  
+
   
   
-  
-  
-  function Document() {
-  
-    
+  function Document({route, navigation}) {
+      const parms = useParams();
       const [descricao, setDescricao] = useState("")
       const [quantidade, setQuantidade] = useState("")
       const [preco, setPreco] = useState("")
@@ -34,7 +34,6 @@ import{
       const [valorTotal, setvalorTotal] = useState(0)
       const [sender, setSender] = useState("")
       const [useData, setUseData] = useState(false)
-      
 
      
 
@@ -60,8 +59,8 @@ import{
   
       }, []);
   
-      const  userDetail = async () => {
-        const useInfo =  await axios.post('http://localhost:5003/api/getuserinfo', {'idAddress': account})
+      const  userDetail = () => {
+        const useInfo =   axios.post('http://localhost:5003/api/getuserinfo', {'idAddress': "0x51bf60a6d4A36d870157B296A2A84Eb94fC9034c"})
             .then((result)=>
             // console.log(result)
             setUseData(result.data)
@@ -177,51 +176,51 @@ import{
   
             <HStack sparcing="4" justify="right">
               <Box w="25%">
-                <FormLabel htmlFor="docNumber" style={{fontWeight: 'bold'}}>Nº do documento</FormLabel>
+                <FormLabel htmlFor="docNumber">Nº do documento</FormLabel>
                 <Input id="docNumber" type="number" disabled/>              
               </Box>                             
               </HStack>
 
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="nome" style={{fontWeight: 'bold'}}>Remetente</FormLabel>
-                <Input id="sender" value={"useData.name"} disabled/>              
+                <FormLabel htmlFor="nome">Remetente</FormLabel>
+                <Input id="sender" value={useData.name} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="senderID" style={{fontWeight: 'bold'}}>Endereço de Identificação</FormLabel>
+                <FormLabel htmlFor="senderID">Endereço de Identificação</FormLabel>
                 <Input id="senderID" value={account} disabled/>              
               </Box>                    
               </HStack>
               
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="senderMail" style={{fontWeight: 'bold'}}>E-mail</FormLabel>
-                <Input id="senderMail" type="email" value={"useData.email"} disabled/>              
+                <FormLabel htmlFor="senderMail">E-mail</FormLabel>
+                <Input id="senderMail" type="email" value={useData.email} disabled/>              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="date" style={{fontWeight: 'bold'}}>Data de envio</FormLabel>
+                <FormLabel htmlFor="date">Data de envio</FormLabel>
                 <Input id="date" type="text" value={ndate} disabled />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>             
               </HStack>
   
               <HStack sparcing="4">
               <Box w="100%">
-                <FormLabel htmlFor="recipName" style={{fontWeight: 'bold'}}>Destinatário</FormLabel>
+                <FormLabel htmlFor="recipName">Destinatário</FormLabel>
                 <Input id="recipName" />              
               </Box>
               <Box w="100%">
-                <FormLabel htmlFor="recipID" style={{fontWeight: 'bold'}}>Endereço do Destinatário</FormLabel>
+                <FormLabel htmlFor="recipID">Endereço do Destinatário</FormLabel>
                 <Input id="recipID" />              
               </Box>    
               </HStack>
@@ -229,14 +228,13 @@ import{
               <HStack sparcing="4">
               
               <Box w="50%">
-                <FormLabel htmlFor="expDate" style={{fontWeight: 'bold'}}>Data de expiração</FormLabel>
+                <FormLabel htmlFor="expDate">Data de expiração</FormLabel>
                 <Input id="expDate" type="date" />              
               </Box>             
               </HStack>
   
               <TableContainer>
                 <TableForm
-                
                     descricao={descricao}
                     setDescricao={setDescricao}
                     quantidade={quantidade}
